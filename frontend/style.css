@@ -1,30 +1,172 @@
-/* frontend/style.css */
 body {
-  font-family: Arial;
+  font-family: 'Segoe UI', Arial, sans-serif;
   display: flex;
   justify-content: center;
-  background: #f2f2f2;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(300deg, #56ccf2, #bf9cff, #fa8bff, #a1c4fd, #fbc2eb, #ecd282);
+  background-size: 180% 180%;
+  animation: bg-move 14s ease-in-out infinite;
+  transition: background 0.8s;
+}
+
+@keyframes bg-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .container {
-  margin-top: 50px;
-  background: white;
-  padding: 20px;
+  background: rgba(255,255,255,0.97);
+  padding: 32px 28px 24px 28px;
+  border-radius: 20px;
+  min-width: 350px;
+  box-shadow: 0 6px 32px 0 rgba(80, 104, 213, 0.18);
+}
+
+h1 {
+  text-align: center;
+  letter-spacing: 2px;
+  color: #726eff;
+  margin-bottom: 22px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+#todoInput {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 18px;
+  border: 1.5px solid #d6c0f6;
   border-radius: 8px;
-  width: 400px;
+  outline: none;
+  background: #f5f5ff;
+  color: #264653;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+#todoInput:focus {
+  border-color: #b289ff;
+  box-shadow: 0 2px 8px #f0eefc;
+}
+
+.add-btn {
+  padding: 10px 22px;
+  background: linear-gradient(90deg, #726eff, #fbc2eb);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 #e3cdf6;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s, transform 0.12s;
+}
+.add-btn:active {
+  transform: scale(0.96);
+}
+.add-btn::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(171,108,255,0.25);
+  border-radius: 100px;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+  z-index: 0;
+}
+.add-btn:active::after {
+  width: 160%;
+  height: 600%;
+  transition: 0s;
+}
+.add-btn span, .add-btn {
+  position: relative;
+  z-index: 2;
 }
 
 ul {
-  list-style: disc;
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  background: #f5f7fb;
+  padding: 12px 14px;
+  border-radius: 7px;
   margin-top: 10px;
+  box-shadow: 0 2px 8px 0 rgba(120, 170, 214, 0.07);
+  font-size: 18px;
+  transition: box-shadow 0.16s, background 0.22s;
+}
+li:hover {
+  background: #ede6ff;
+  box-shadow: 0 8px 28px 0 rgba(120, 170, 214, 0.13);
 }
 
-button {
-  margin-left: 5px;
+li span {
+  flex: 1;
+  color: #18404a;
+  word-break: break-all;
+  transition: color 0.2s;
+}
+
+li span.completed {
+  text-decoration: line-through;
+  color: #b3b3b3;
+}
+
+li .todo-actions {
+  display: flex;
+  gap: 7px;
+}
+
+li button {
+  background: none;
+  border: none;
+  color: #726eff;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 4px 9px;
+  cursor: pointer;
+  transition: background 0.16s, color 0.16s, transform 0.09s;
+  position: relative;
+  overflow: hidden;
+}
+li button:active {
+  background: #f7e1ff;
+  transform: scale(0.92);
+}
+
+@media (max-width: 500px) {
+  .container {
+    min-width: 95vw;
+    padding: 18px 6vw;
+  }
+  h1 {
+    font-size: 22px;
+  }
+  .input-group {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
